@@ -2,8 +2,11 @@ package com.yondercross.sexshop.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Builder;
 
 @Entity
 @Table(name="usuario")
@@ -11,12 +14,13 @@ public class UsuarioModel {
 	
 	@Id
 	@Column(unique= true, nullable=false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long idUsuario;
 	private String nombre;
 	private String apellido1;
 	private String apellido2;
 	private String correo;
-	private Long telefono;
+	private String telefono;
 	private String direccion;
 	private String contrasena;
 	
@@ -51,10 +55,10 @@ public class UsuarioModel {
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
-	public Long getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
-	public void setTelefono(Long telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 	public String getDireccion() {

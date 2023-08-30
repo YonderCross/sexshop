@@ -1,6 +1,6 @@
 package com.yondercross.sexshop.controllers;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,14 +11,13 @@ import com.yondercross.sexshop.models.UsuarioModel;
 
 @RestController
 @RequestMapping("/usuario")
-@CrossOrigin(origins = "*")
 public class UsuarioController {
 
 	@Autowired
 	UsuarioService usuarioService;
 	
 	@GetMapping()
-	public ArrayList<UsuarioModel> obtenerUsuarios(){
+	public List<UsuarioModel> obtenerUsuarios(){
 		return usuarioService.obtenerUsuarios();
 	}
 	
@@ -27,6 +26,11 @@ public class UsuarioController {
 		return this.usuarioService.guardarUsuario(usuario);
 	}
 	
+	@PutMapping(path= "/{id}")
+	public UsuarioModel actualizarUsuario(@RequestBody UsuarioModel usuario, @PathVariable("id") Long id) {
+		return this.usuarioService.actualizarUsuario(usuario, id);
+	}
+
 	@GetMapping(path="/{id}")
 	public Optional<UsuarioModel> obetenerUsuarioPorId(@PathVariable("id") long id){
 		return this.usuarioService.obtenerporId(id);
